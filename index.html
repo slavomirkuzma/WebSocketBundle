@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Gos Websocket Bundle by GeniusesOfSymfony</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Gos Websocket Bundle</h1>
+      <h2 class="project-tagline">Symfony2 Websocket Ratchet React Server Client</h2>
+      <a href="https://github.com/GeniusesOfSymfony/WebSocketBundle" class="btn">View on GitHub</a>
+      <a href="https://github.com/GeniusesOfSymfony/WebSocketBundle/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/GeniusesOfSymfony/WebSocketBundle/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="gos-web-socket-bundle" class="anchor" href="#gos-web-socket-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Gos Web Socket Bundle</h1>
+
+<p><img src="ws_logo.jpeg" alt="Websocket"></p>
+
+<h2>
+<a id="about" class="anchor" href="#about" aria-hidden="true"><span class="octicon octicon-link"></span></a>About</h2>
+
+<p>Gos Web Socket is a Symfony2 Bundle designed to bring together WebSocket functionality in a easy to use application architecture.</p>
+
+<p>Much like Socket.IO it provides both server side and client side code ensuring you have to write as little as possible to get your app up and running.</p>
+
+<p>Powered By <a href="http://socketo.me">Ratchet</a> and <a href="http://autobahn.ws/js">Autobahn JS</a>, with <a href="http://symfony.com/">Symfony2</a></p>
+
+<p><strong><a href="https://github.com/GeniusesOfSymfony/WebsocketAppDemo">Demo project</a></strong></p>
+
+<h2>
+<a id="what-can-i-do-with-this-bundle" class="anchor" href="#what-can-i-do-with-this-bundle" aria-hidden="true"><span class="octicon octicon-link"></span></a>What can I do with this bundle</h2>
+
+<p>Make real time application like</p>
+
+<ul>
+<li>Chat Application</li>
+<li>Real time notification</li>
+<li>Browser games</li>
+</ul>
+
+<p>More commonly, all application who meet real time.</p>
+
+<h2>
+<a id="built-in-feature" class="anchor" href="#built-in-feature" aria-hidden="true"><span class="octicon octicon-link"></span></a>Built in feature</h2>
+
+<ul>
+<li>PHP Websocket server (IO / WAMP)</li>
+<li>PHP Websocket client (IO / WAMP)</li>
+<li>JS Websocket client (IO / WAMP)</li>
+<li>PubSub (with routing)</li>
+<li>Remote procedure</li>
+<li>User authentication through websocket</li>
+<li>Periodic call</li>
+<li>Origin checker</li>
+</ul>
+
+<h2>
+<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h2>
+
+<ul>
+<li><a href="#installation-instructions">Installation Instructions</a></li>
+<li><a href="Resources/docs/ClientSetup.md">Client Setup</a></li>
+<li><a href="Resources/docs/RPCSetup.md">Server Side of RPC</a></li>
+<li><a href="Resources/docs/TopicSetup.md">PubSub Topic Handlers</a></li>
+<li>
+<a href="Resources/docs/PeriodicSetup.md">Periodic Services</a>(functions to be run every x seconds with the IO loop.)</li>
+<li><a href="Resources/docs/SessionSetup.md">Session Management &amp; User authentication</a></li>
+<li><a href="Resources/docs/Events.md">Server Events</a></li>
+<li><a href="Resources/docs/ConfigurationReference.md">Configuration Reference</a></li>
+<li><a href="Resources/docs/ShipInProduction.md">Ship in production</a></li>
+<li><a href="Resources/docs/Performance.md">Performance Bench</a></li>
+</ul>
+
+<h2>
+<a id="code-cookbook" class="anchor" href="#code-cookbook" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code Cookbook</h2>
+
+<ul>
+<li><a href="Resources/docs/code/SharingConfig.md">Sharing Config between Server and Client</a></li>
+</ul>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>You must achieve these following steps before send your first message through websocket.</p>
+
+<ol>
+<li>Install the bundle</li>
+<li>Create you first topic handler</li>
+<li>Implement the client (Javascript)</li>
+</ol>
+
+<p>Let's do it !</p>
+
+<h2>
+<a id="installation-instructions" class="anchor" href="#installation-instructions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation Instructions</h2>
+
+<h3>
+<a id="step-1-install-via-composer" class="anchor" href="#step-1-install-via-composer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Install via composer</h3>
+
+<p><code>composer require gos/web-socket-bundle</code></p>
+
+<h3>
+<a id="step-2-add-to-your-app-kernel" class="anchor" href="#step-2-add-to-your-app-kernel" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Add to your App Kernel</h3>
+
+<div class="highlight highlight-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// app/AppKernel.php</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">registerBundles</span>()</span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-smi">$bundles</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">        <span class="pl-c">// ...</span></span>
+<span class="pl-s1">        <span class="pl-k">new</span> <span class="pl-c1">Gos\Bundle\WebSocketBundle\</span><span class="pl-c1">GosWebSocketBundle</span>(),</span>
+<span class="pl-s1">        <span class="pl-k">new</span> <span class="pl-c1">Gos\Bundle\PubSubRouterBundle\</span><span class="pl-c1">GosPubSubRouterBundle</span>(),</span>
+<span class="pl-s1">    );</span>
+<span class="pl-s1">}</span></pre></div>
+
+<h3>
+<a id="step-3-configure-websocket-server" class="anchor" href="#step-3-configure-websocket-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Configure WebSocket Server</h3>
+
+<p>Add the following to your app/config.yml</p>
+
+<div class="highlight highlight-yaml"><pre><span class="pl-c"># Web Socket Configuration</span>
+<span class="pl-s"><span class="pl-ent">gos_web_socket:</span></span>
+    <span class="pl-s"><span class="pl-ent">server:</span></span>
+        <span class="pl-c1"><span class="pl-ent">port:</span> 8080        </span><span class="pl-c">#The port the socket server will listen on</span>
+        <span class="pl-s"><span class="pl-ent">host:</span> <span class="pl-s">127.0.0.1   </span></span><span class="pl-c">#The host ip to bind to</span></pre></div>
+
+<p><em>Note: when connecting on the client, if possible use the same values as here to ensure compatibility for sessions etc.</em></p>
+
+<h3>
+<a id="step-4-launching-the-server" class="anchor" href="#step-4-launching-the-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: Launching the Server</h3>
+
+<p>The Server Side WebSocket installation is now complete. You should be able to run this from the root of your symfony installation.</p>
+
+<div class="highlight highlight-command"><pre>php app/console gos:websocket:server</pre></div>
+
+<p>If everything is successful, you will see something similar to the following:</p>
+
+<pre><code>Starting Gos WebSocket
+Launching Ratchet WS Server on: 127.0.0.1:8080
+</code></pre>
+
+<p>This means the websocket server is now up and running ! </p>
+
+<p><strong>From here, only the websocket server is running ! That doesn't mean you can subscribe, publish, call. Follow next step to do it :)</strong></p>
+
+<h3>
+<a id="next-steps" class="anchor" href="#next-steps" aria-hidden="true"><span class="octicon octicon-link"></span></a>Next Steps</h3>
+
+<p>For further documentations on how to use WebSocket, please continue with the client side setup.</p>
+
+<ul>
+<li><a href="Resources/docs/ClientSetup.md">Setup Client Javascript</a></li>
+</ul>
+
+<h2>
+<a id="original-project" class="anchor" href="#original-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Original Project</h2>
+
+<p><a href="https://github.com/JDare/ClankBundle">https://github.com/JDare/ClankBundle</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/GeniusesOfSymfony/WebSocketBundle">Gos Websocket Bundle</a> is maintained by <a href="https://github.com/GeniusesOfSymfony">GeniusesOfSymfony</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
